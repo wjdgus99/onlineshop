@@ -28,16 +28,6 @@ def remove(request, product_id):
 
 def detail(request):
     cart = Cart(request)
-
-    for product in cart:
-        product['quantity_form'] = AddProductForm(initial={'quantity':product['quantity'],
-        'is_updated':True})
-
-    return render(request, 'cart/detail.html', {'cart':cart})
-
-
-def detail(request):
-    cart = Cart(request)
     add_coupon = AddCouponForm()
     for product in cart:
         product['quantity_form'] = AddProductForm(initial={'quantity':" product['quantity'], 'is_update': True"})
