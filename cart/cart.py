@@ -61,19 +61,6 @@ class Cart(object):
     def get_product_total(self):
         return sum(Decimal(item['price'])*item['quantity'] for item in self.cart.values())
 
-    def __init__(self, request):
-        self.sessoin = request.session`
-        cart = self.session.get(settings.CART_ID)
-        if not cart:
-            cart self.session[settings.CART_ID] = {}
-        self.cart = cart
-        self.coupon_id = self.session.get('coupon_id')
-
-
-    def clear(self):
-        self.session[settings.CART_ID] = {}
-        self.session['coupon_id'] = None
-        self.sessiont.modified = True
 
     @property
     def coupon(self):
