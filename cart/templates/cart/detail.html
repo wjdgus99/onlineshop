@@ -27,7 +27,7 @@
           <td>{{ product.name }}</td>
           <td>
                 <form action="{% url 'cart:add' product.id %}" method="post">
-                    {{item.quantity_form.quantity}}
+                    {{item.quantity}}
                     {{item.quantity_form.is_update}}
                     <input type="submit" class="btn btn-primary" value="Update">
                     {% csrf_token %}
@@ -39,30 +39,25 @@
         </tr>
             {% endwith %}
         {% endfor %}
-        <tr class="total">
-            <td>Total</td>
+
+        {% if cart.coupon %}
+          <tr class="subtotal">
+            <td>Subtotal</td>
             <td colspan="4"></td>
-            <td class="num">{{cart.get_total|floatformat:"2"}}</td>
+            <td>${{ cart.get_product_total }}</td>
+          </tr>
+          <tr>
+              <td>"{{ cart.coupon.code }}" coupon (${{ cart.coupon.amount }})</td>
+              <td colspan="4"></td>
+              <td>- ${{ cart.get_discount_total|floatformat:"2" }}</td>
+            </tr>
+        {% endif %}
+
+        <tr class="total">
+          <td>Total</td>
+          <td colspan="4"></td>
+          <td class="num">${{ cart.get_total_price|floatformat:"2" }}</td>
         </tr>
-
-          {% if cart.coupon %}
-            <tr class="subtotal">
-              <td>Subtotal</td>
-              <td colspan="4"></td>
-              <td>${{ cart.get_product_total }}</td>
-            </tr>
-            <tr>
-                <td>"{{ cart.coupon.code }}" coupon (${{ cart.coupon.amount }})</td>
-                <td colspan="4"></td>
-                <td>- ${{ cart.get_discount_total|floatformat:"2" }}</td>
-              </tr>
-            {% endif %}
-
-            <tr class="total">
-              <td>Total</td>
-              <td colspan="4"></td>
-              <td class="num">${{ cart.get_total_price|floatformat:"2" }}</td>
-            </tr>
 
     </tbody>
 </table>

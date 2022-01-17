@@ -12,6 +12,7 @@ class Cart(object):
         if not cart:
             cart = self.session[settings.CART_ID] = {}
         self.cart = cart
+        self.coupon_id = self.session.get('coupon_id')
 
 
     def __len__(self):
@@ -40,7 +41,6 @@ class Cart(object):
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] = quantity+1
-
         self.save()
 
     def save(self):
@@ -55,6 +55,7 @@ class Cart(object):
 
     def clear(self):
         self.session[settings.CART_ID] = {}
+        self.session['coupon_id'] = None
         self.session.modified = True
 
     def get_product_total(self):

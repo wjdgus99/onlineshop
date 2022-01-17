@@ -9,4 +9,4 @@ class Coupon(models.Model):
     active = models.BooleanField()
 
     def __str__(self):
-        return self.LANGUAGE_CODE
+        return self.code
