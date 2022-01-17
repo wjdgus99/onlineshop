@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
     'cart',
     'coupon',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -146,10 +147,13 @@ CART_ID = 'cart_in_session'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
+
 DEFAULT_FILE_STORAGE = 'onlineshop.asset_storage.MediaStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+IAMPORT_KEY = '7759303222479665'
+IAMPORT_SECRET = 'b58889f4bcff93dd9966bcaa5b4835f89b3ae3dc4313ab7ad71bbbfdbb72f0cba1f0e72f7bcdc8c8'
 
 AWS_ACCESS_KEY_ID = 'AKIAZIE5HN6AI6YEB4FQ'
 AWS_SECRET_ACCESS_KEY = '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'
