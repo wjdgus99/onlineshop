@@ -24,7 +24,7 @@ def payments_prepare(order_id, amount, *args, **kwargs):
     if access_token:
         access_data = {
             'merchant_uid': order_id,
-            'amount': amount
+            'amount': amount,
         }
 
     url = 'https://api.iamport.kr/payments/prepare',
@@ -63,6 +63,5 @@ def find_transaction(order_id, *args, **kwargs):
             return context
         else:
             return None
-
     else:
         raise ValueError("토큰 오류")
